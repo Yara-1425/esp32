@@ -53,7 +53,7 @@ All components share a **common Ground (GND)** connected via the breadboard.
 * **Password:** `12345678`
 
 
-5. Open your web browser and navigate to: `[http://192.168.4.1](http://192.168.4.1)`
+5. Open your web browser and navigate to: http://192.168.4.1
 6. Click **Open** or **Close** to control the hardware!
 
 
