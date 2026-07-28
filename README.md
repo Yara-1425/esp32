@@ -65,4 +65,4 @@ All components share a **common Ground (GND)** connected via the breadboard.
 ---
 
 ##  Demo
-!(Demo.gif)
+![project demo](Demo.gif)
