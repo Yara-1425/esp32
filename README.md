@@ -3,7 +3,6 @@
 
 An IoT project built using an **ESP32** microcontroller acting as a Wi-Fi Access Point (AP) to control a servo motor and status LEDs through a simple web interface.
 
----
 
 ##  Project Overview
 
@@ -12,7 +11,6 @@ This system allows a user to connect directly to the ESP32's Wi-Fi network (`ESP
 * **Open Position:** Moves the servo motor to $180^\circ$, turns **ON** the Green LED, and turns **OFF** the Red LED.
 * **Close Position:** Returns the servo motor to $0^\circ$, turns **OFF** the Green LED, and turns **ON** the Red LED.
 
----
 
 ## Components Used
 
@@ -22,7 +20,6 @@ This system allows a user to connect directly to the ESP32's Wi-Fi network (`ESP
 * Resistors 
 * Breadboard and Jumper Wires
 
----
 
 ##  Wiring Connections 
 
@@ -40,14 +37,11 @@ All components share a **common Ground (GND)** connected via the breadboard.
 
 > **Note on Breadboard Ground:** All negative terminals (GND) of the servo motor and both LEDs are plugged into the same vertical common ground rail on the breadboard, which is linked directly to a single **GND** pin on the ESP32.
 
----
 
 ## Circuit Wiring Diagram
 
 <img width="480" height="640" alt="WhatsApp Image 2026-07-29 at 12 24 07 AM" src="https://github.com/user-attachments/assets/60dfd0b6-b81f-42e5-b20a-e0e66325bc38" />
 
-
----
 
 ##  How to Run the Project
 
@@ -62,7 +56,6 @@ All components share a **common Ground (GND)** connected via the breadboard.
 5. Open your web browser and navigate to: `[http://192.168.4.1](http://192.168.4.1)`
 6. Click **Open** or **Close** to control the hardware!
 
----
 
 ##  Demo
 ![Project Demo](Demo.gif)
