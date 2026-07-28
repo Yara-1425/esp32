@@ -1,0 +1,75 @@
+#include <WiFi.h>
+#include <WebServer.h>
+#include <ESP32Servo.h>
+
+const char* ssid = "ESP32_YARA";
+const char* password = "12345678"; 
+
+WebServer server(80);
+Servo myServo;
+
+const int servoPin = 15;
+const int greenLedPin = 16;
+const int redLedPin = 17;
+
+
+void handleRoot() {
+  String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>ESP32 Control</title></head>";
+  html += "<body style='text-align:center; font-family:Arial; margin-top:50px;'>";
+  html += "<h1>Control Servo & LEDs</h1>";
+  html += "<br><a href='/open'><button style='font-size:20px; padding:10px 20px; background-color:green; color:white;'>Open</button></a>";
+  html += "&nbsp;&nbsp;&nbsp;";
+  html += "<a href='/close'><button style='font-size:20px; padding:10px 20px; background-color:red; color:white;'>Close</button></a>";
+  html += "</body></html>";
+  
+  server.send(200, "text/html", html);
+}
+
+void handleOpen() {
+  myServo.write(180);          
+  digitalWrite(greenLedPin, HIGH); 
+  digitalWrite(redLedPin, LOW);    
+  
+  server.sendHeader("Location", "/");
+  server.send(303);
+}
+
+// عند الضغط على زر Close
+void handleClose() {
+  myServo.write(0);            
+  digitalWrite(greenLedPin, LOW);  
+  digitalWrite(redLedPin, HIGH);  
+  
+  server.sendHeader("Location", "/");
+  server.send(303);
+}
+
+void setup() {
+  Serial.begin(115200);
+
+
+  pinMode(greenLedPin, OUTPUT);
+  pinMode(redLedPin, OUTPUT);
+  
+
+  myServo.attach(servoPin);
+  myServo.write(0);
+
+  Serial.println("Setting up Access Point...");
+  WiFi.softAP(ssid, password);
+  
+  IPAddress myIP = WiFi.softAPIP();
+  Serial.print("AP IP address: ");
+  Serial.println(myIP); 
+
+  server.on("/", handleRoot);
+  server.on("/open", handleOpen);
+  server.on("/close", handleClose);
+
+  server.begin();
+  Serial.println("HTTP server started");
+}
+
+void loop() {
+  server.handleClient();
+}
